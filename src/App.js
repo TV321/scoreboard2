@@ -1,26 +1,59 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './Header';
+import Player from './Player';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+
+    state = {
+        players: [
+            {
+                name: "Sona",
+                id: 1
+            },
+            {
+                name: "Devon",
+                id: 2
+            },
+            {
+                name: "Tex",
+                id: 3
+            },
+            {
+                name: "James",
+                id: 4
+            }
+
+        ]
+    };
+
+
+    handleRemovePlayer = (id) => {
+        this.setState( prevState => {
+            return {
+                players: prevState.players.filter( p => p.id !== id )
+            };
+        });
+    }
+
+    render() {
+        return (
+            <div className="scoreboard">
+                <Header title="Scoreboard" totalPlayers={ this.state.players.length } />
+                {/* Player list */}
+                { this.state.players.map( player =>
+                    <Player
+                        name={ player.name }
+                        id={ player.id }
+                        key={ player.id.toString() }
+                        removePlayer={ this.handleRemovePlayer }
+                    />
+                )}
+            </div>
+        )
+    }
 }
+
+
 
 export default App;
