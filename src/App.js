@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Player from './Player';
-import AddPlayerForm from './AddPlayerForm';
+import AddPlayerForm2 from './AddPlayerForm2';
 
 
 class App extends Component {
@@ -70,7 +70,7 @@ class App extends Component {
     render() {
         return (
             <div className="scoreboard">
-                <Header title="Scoreboard"
+                <Header
                 players={ this.state.players } />
                 {/* Player list */}
                 { this.state.players.map( (player, index) =>
@@ -84,7 +84,7 @@ class App extends Component {
                         removePlayer={ this.handleRemovePlayer }
                     />
                 )}
-                <AddPlayerForm addPlayer={ this.handleAddPlayer }/>
+                <AddPlayerForm2 addPlayer={ this.handleAddPlayer }/>
             </div>
         )
     }
